@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage[T1]{fontenc}	
+\usepackage[english]{babel}
+
+\usepackage{listings}
+\usepackage{minted}
+
+%\title{Home Server Provisioning}
+\author{Eloi Blaser}
+%\date{March 2026}
+
+
+\newcommand{\manualname}{Home Server Manual}
+\newcommand{\authorname}{Eloi Blaser}
+
+%Autres packages et commandes utiles
+%----------------------------------------------------------------
+\usepackage{amsmath,amsthm,amssymb,amsfonts}	% Pour pouvoir inclure certains symboles et environnements mathématiques
+\usepackage{enumerate} % Pour mieux gérer la commande enumerate dans les sections
+\usepackage{graphicx}	% Pour inclure des images
+\usepackage{svg}
+\usepackage{color}	% Pour inclure du texte en couleur
+\usepackage{units}	% Pour pouvoir tapper les unités correctement
+\usepackage{pgf,tikz}	% Utilisation du module tikz, qui permet de tracer des belles images
+\usetikzlibrary{arrows} % Quand on exporte une image GeoGebra, on a besoin de préciser cela
+\usepackage{hyperref}	% Pour include des liens dans le document
+\newcommand{\N}{\mathbb{N}}	% Commande personnelle, plus rapide pour tapper les ensembles
+\newcommand{\Z}{\mathbb{Z}}	% Commande personnelle, plus rapide pour tapper les ensembles
+\newcommand{\R}{\mathbb{R}}	% Commande personnelle, plus rapide pour tapper les ensembles
+\usepackage{cprotect}	% Pour pouvoir personaliser la légende des figures
+%----------------------------------------------------------------
+
+
+\begin{document}
+
+\include{sections/pagetitre}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\input{sections/section1}
+
+\newpage
+
+\input{sections/section2}
+
+\newpage
+
+\input{sections/section3}
+
+\end{document}
