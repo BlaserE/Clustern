@@ -109,23 +109,23 @@
 
 % Layer 1: The Foundation (Physical & OS)
 \include{sections/20_provisioning_baseline}  % Hardware, VPS Setup, Debian Install
-\include{sections/21_storage_zfs}            % ZFS Dataset hierarchy
+\include{sections/30_storage_zfs}            % ZFS Dataset hierarchy
 
 % Layer 2: The Logic (Ansible)
-\include{sections/30_ansible_orchestration}   % Common role & Idempotency
+\include{sections/40_ansible_orchestration}   % Common role & Idempotency
 
 % Layer 3: The Perimeter (Networking)
-\include{sections/40_network_hardening}      % Wireguard Tunnel & Hidden Bridge
+\include{sections/50_network_hardening}      % Wireguard Tunnel & Hidden Bridge
 
 % Layer 4: The Services (Docker)
-\include{sections/50_service_orchestration}  % NPM, AdGuard, Vaultwarden
-\include{sections/51_gitops_workflow}        % Komodo Hub & GitHub CI/CD
+\include{sections/60_service_orchestration}  % NPM, AdGuard, Vaultwarden
+\include{sections/70_gitops_workflow}        % Komodo Hub & GitHub CI/CD
 
 % Layer 5: The Intelligence (SRE)
-\include{sections/60_automation_observability} % n8n, Monitoring & Alerts
+\include{sections/80_automation_observability.tex} % n8n, Monitoring & Alerts
 
 % Layer 6: Maintenance
-\include{sections/70_disaster_recovery}      % 3-2-1 Backups & Recovery SOP
+\include{sections/90_disaster_recovery}      % 3-2-1 Backups & Recovery SOP
 
 % --- Back Matter ---
 \printglossary[title=Special Terms, toctitle=List of terms]
