@@ -1,3 +1,8 @@
+% ==============================
+% 60_service_orchestration.tex
+% Kubernetes Cluster integration
+% ==============================
+
 \chapter{Containerized Service Deployment}\label{chap:deployment}
 \section{Basic K3s Fundamentals}
 While \texttt{containerd} handles the low-level execution of containers, \gls{k3s} manages their orchestration across the entire cluster. 
@@ -56,5 +61,7 @@ If you use centralized storage :
 	For these workloads, we utilize \textbf{Democratic-CSI} to provision block-storage (\texttt{zvol}) via \texttt{iSCSI}. 
 	This provides the pod with a dedicated virtual disk that supports the low-level locking required for database stability.
 \end{itemize}
+
+
 
 \section{Network Orchestration}\label{section:pod-network}
