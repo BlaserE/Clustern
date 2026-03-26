@@ -1,3 +1,33 @@
 \chapter{Continuous Deployment \& GitOps Workflow}\label{chap:gitops}
 
-\section{Using Komodo}
+\section{Philosophy of GitOps}
+GitOps is an method of working using \gls{git} to configure a server environment.
+
+It uses the git repository as the source of truth, making bug-tracking and reverting changes trivially easy.
+
+By using \gls{k3s}, it is no longer a declarative environment, but an imperative one. Instead of saying "do this", it says "try to become this" and it will keep trying until it succeeds.
+
+\section{Reconciliation Loop}
+In kubernetes, the cluster attemps to reach a certain state continuously. When it detects drifts or changes from the intended state, it works towards that new goal. 
+This applies when a container breaks or crashes, making it self-healing. 
+
+\section{Infrastructure vs. Workflow}
+The \gls{ansible} playbook is in charge of every repetitive task. For exemple, downloading packages, updating the OS or configuring firewall rules. The things that are required for the server to run correctly are not touched by human hands, only by Ansible.
+
+\section{CD Options}
+There exists three mainstream tools used for deploying services from a git repository :
+
+\begin{itemize}
+	\item \textbf{K3s Auto-Deployer} \\
+	By default, K3s watches a target directory for changes and applies them to the cluster.
+	\item \textbf{Cloud-Native} \\
+	There are tools like \texttt{ArgoCD} and \texttt{FluxCD} that instead watch a repository for changes and applies them to the cluster.
+	\item \textbf{Helm Integration} \\
+	It is possible to use the integrated package manager within the workflow.
+	
+\end{itemize}
+
+\section{My setup}
+My setup is as follows :
+
+blah blah
