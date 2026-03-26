@@ -1,4 +1,60 @@
 \chapter{Containerized Service Deployment}\label{chap:deployment}
-\section{Using Docker}
+\section{Basic K3s Fundamentals}
+While \texttt{containerd} handles the low-level execution of containers, \gls{k3s} manages their orchestration across the entire cluster. 
 
-\section{Using Docker Compose}
+Kubernetes utilizes \texttt{pods} as the smallest deployable units. In a cluster environment, pods are ephemeral by design, which introduces the "Challenges of Ephemerality" that must be addressed for a stable environment:
+
+\begin{itemize}
+	\item \textbf{Dynamic Networking} \\
+	Pods receive internal IP addresses randomly upon creation. To ensure reliable communication and reverse proxying, we utilize \textbf{Services} (ClusterIP), which provide a persistent DNS name regardless of individual pod restarts.
+	
+	\item \textbf{Data Persistence} \\
+	By default, data within a pod's volume is lost if the pod shifts to a different node[cite: 115, 116]. This is resolved in Section \ref{section:pod-storage} through the use of Persistent Volume Claims (PVCs).
+	
+	\item \textbf{Database Integrity} \\
+	Managing SQL databases in a distributed cluster is complex. While standard files can live on network shares, databases require specific locking mechanisms to prevent corruption[cite: 113].
+\end{itemize}
+
+
+\section{K3s Features}
+By default, K3s comes with many features that you may or may not use.
+
+\begin{itemize}
+	\item \textbf{Ingress Controller} \\
+	It comes with a modified version of \texttt{Traefik} that handles \texttt{INGRESS} traffic. (to expand upon)
+	
+	\item \textbf{Integrations} \\
+	In K3s, you can add \texttt{operators}, which are essentially plugins for Kubernetes that integrates with other services.
+\end{itemize}
+
+\section{Using K3s Manifest}
+In \texttt{Kubernetes}, you declare a manifest file that is used to define the ideal state of the cluster. Kubernetes will then work towards that goal by orchestrating your services accordingly.
+
+This makes the cluster being self-healing and declarative a core function of the server.
+
+\section{Package Manager}
+\texttt{K3s} comes with \texttt{Helm}, a package manager for Kubernetes.
+
+\section{Storage Orchestration}\label{section:pod-storage}
+Please read chapter \ref{chap:storage} on storage if you haven't already. Many core concepts visited there will be used here.
+
+Depending on your choice of storage (Distributed or Centralized), there are different ways to achieve working services without losing data whenever a pod changes node.
+
+If you use centralized storage :
+\begin{itemize}
+	\item \textbf{Network File Shares (NFS/SMB)} \\
+	Ideal for configuration files and media libraries. 
+	By mounting a centralized \gls{zfs} dataset (e.g., \texttt{/mnt/appdata}) to every node, pods can read and write to the same physical location regardless of their host.
+	
+	\item \textbf{SQL Servers} \\
+	Many services require or support SQL servers, which can be hosted on the central storage server. Often, services support a range of versions, so if you're lucky, you can squeeze a few in the same server. 
+	
+	For exemple, \texttt{Vaultwarden} uses SQLite but can support MariaDB as well. 
+	
+	\item \textbf{The SQLite/SQL Challenge} \\
+	SQLite databases are prone to corruption over NFS due to improper file-locking.
+	For these workloads, we utilize \textbf{Democratic-CSI} to provision block-storage (\texttt{zvol}) via \texttt{iSCSI}. 
+	This provides the pod with a dedicated virtual disk that supports the low-level locking required for database stability.
+\end{itemize}
+
+\section{Network Orchestration}\label{section:pod-network}
