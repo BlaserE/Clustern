@@ -13,7 +13,6 @@ To maintain a standardized environment, ZFS datasets are mounted directly to the
 \end{itemize}
 
 
-
 \begin{lstlisting}[language=bash, caption=Applying Professional Mount Points]
 	# Set the mountpoint property to override the default
 	/tank/ hierarchy
@@ -55,3 +54,29 @@ A professional SOP requires verification steps to ensure the foundation is corre
 	# Check the health and parity of the RAID-Z1 pool
 	zpool status tank
 \end{lstlisting}
+
+
+\section{Cluster Storage}
+There are two main ways to manage storage across a cluster, both of which have advantages and disadvantages.
+
+\begin{itemize}
+	\item \textbf{Distributed Storage} (Ceph / Longhorn) \\
+	You can distribute storage across every machine, essentially syncing it and making it easily accessible. \\
+	
+	\begin{itemize}
+		\item \textbf{Pros :} \\
+		Extremely redundant storage. One node dies, the rest don't lose data at all.
+		\item \textbf{Cons :} \\
+		Large overhead in RAM and CPU. Worse for low-performance nodes in a cluster.
+	\end{itemize}
+	
+	\item \textbf{Centralized Storage} \\
+	You can have one node / server act as a central storage provider.
+	
+	\begin{itemize}
+		\item \textbf{Pros :} \\
+		Little to no overhead. Easy to backup the storage and provision the cluster.
+		\item \textbf{Cons :} \\
+		More vulnerable to hardware damage. If the main node dies, the remaining nodes lose all data. 
+	\end{itemize}
+\end{itemize}

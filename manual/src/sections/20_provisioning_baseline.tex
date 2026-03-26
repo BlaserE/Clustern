@@ -1,6 +1,6 @@
 \chapter{Base System Provisioning}\label{chap:base-provisioning}
 \section{Hardware Requirements \& Baseline}
-While the "Sovereign-Fort" architecture is designed to be resource-efficient, the use of ZFS and containerized workloads necessitates a specific hardware baseline to ensure data-integrity and system responsiveness.
+While the "Hex-Cluster" architecture is designed to be resource-efficient, the use of ZFS and containerized workloads necessitates a specific hardware baseline to ensure data-integrity and system responsiveness.
 
 \begin{itemize}
 	\item \textbf{CPU :} Any x86\_64 processor with at least 4 cores (e.g., Intel Core i5-7400 or equivalent).
@@ -21,9 +21,7 @@ The reference implementation for this manual utilizes a an \texttt{Intel i5-7400
 
 \begin{itemize}
 	\item \textbf{Network :} An internet connection is needed for the installation, from start to finish and even during regular operations.
-	\item \textbf{Installation Media :} An external storage of a minimum of 32\unit{GB} of storage is needed for the \texttt{netinst} ISO. A static IP is also necessary since manually configured IPs do not change automatically, potentially breaking your services.
-	\item \textbf{External Gateway (Optional) :} Access to a VPS (Oracle \/ AWS \/ Azure \/ etc.) if following the Wireguard tunnel instructions in {Chapter }\ref{chap:security}
-	
-	
+	\item \textbf{Installation Media :} An external storage of a minimum 32\unit{GB} is needed for the \texttt{netinst} ISO. A static IP is also necessary since manually configured IPs do not change automatically, potentially breaking your services. Unless you configure an automated method to do so, which I won't be covering since I do have a static IP.
+	\item \textbf{External Gateway (Optional) :} Access to a VPS (Oracle \/ AWS \/ Azure \/ etc.) if following the Wireguard / Tailscale tunnel instructions in {Chapter }\ref{chap:security}
 	
 \end{itemize}

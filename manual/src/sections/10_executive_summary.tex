@@ -6,7 +6,8 @@ It comes from a shift in infrastructure deployment, where instead of manually en
 
 This manual as well as the \href{\githubrepo}{source repository} provides the blueprint required to create said environment.
 
-The end goal is to have a Declarative orchestration of the server, rather than a manual one. It is the distinction between an amateur home server environment and that of a professional server. This creates an insurance where even if the physical home server were to completely disappear tomorrow, users could simply buy a new one, run their code and have it running by itself with as little human interaction as possible. 
+The end goal is to have a Declarative orchestration of the server, rather than a manual one. It is the distinction between an amateur home server environment and that of a professional server. 
+This creates an insurance where even if the physical home server were to completely disappear tomorrow, users could simply buy a new one, run their code and have it running by itself with as little human interaction as possible. 
 
 \section{Optimal Environment}
 By the end of the automated configuration, the server will be in an optimized environment to safely run services, monitor resources, troubleshoot bugs as well as secure remote access of said services.
@@ -19,5 +20,5 @@ There are three layers to this optimal configuration :
 	\item \textbf{Layer 02: The Logic} (Orchestration \& Networking) \\
 	The automated tools needed for reliable and constant operations as well as the server security hardening for reduced attack surfaces.
 	\item \textbf{Layer 03: The Ecosystem} (Service Delivery) \\
-	The Docker-based service layer managed by GitOps. This is for deploying Application Workloads services that are not critical to the creation or sustained operation of the optimal environment.
+	The Kubernetes-based (K3s) deployment layer managed by GitOps. This is for deploying Application Workloads services that are not critical to the creation or sustained operation of the optimal environment.
 \end{itemize}
