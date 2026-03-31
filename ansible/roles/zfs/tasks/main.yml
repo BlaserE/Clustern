@@ -1,0 +1,3 @@
+# The main task in charge of configurating ZFS on the target hosts.
+# This file is part of the Ansible role for ZFS configuration.
+# You can add tasks here to install ZFS, create pools, set properties, etc.
