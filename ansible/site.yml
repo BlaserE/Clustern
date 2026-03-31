@@ -1,0 +1,19 @@
+---
+- name: Initial Baseline for Debian 13
+  hosts: metal
+  become: yes
+  tasks:
+    - name: Update and upgrade the system
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install essential packages
+      apt:
+        name:
+        - curl
+        - git
+        - vim
+        - ufw
+        - htop
+        state: present

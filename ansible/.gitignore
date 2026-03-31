@@ -1,0 +1,14 @@
+# Ansible-specific ignores
+*.retry
+*.log
+.ansible_cache/
+
+# Local environment files
+venv/
+--pycache__/
+
+# Infrastructure secrets
+inventory/hosts.ini
+*.key
+*.pem
+vault_pass.txt
