@@ -1,19 +1,19 @@
 ---
 - name: Initial Baseline for Debian 13
   hosts: metal
-  become: yes
+  become: true
   tasks:
     - name: Update and upgrade the system
-      apt:
-        update_cache: yes
+      ansible.builtin.apt:
+        update_cache: true
         upgrade: dist
 
     - name: Install essential packages
-      apt:
+      ansible.builtin.apt:
         name:
-        - curl
-        - git
-        - vim
-        - ufw
-        - htop
+          - vim
+          - ufw
+          - htop
+          - git
+          - curl
         state: present
