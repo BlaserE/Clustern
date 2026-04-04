@@ -2,6 +2,7 @@
 *.retry
 *.log
 .ansible_cache/
+inventory.yml
 
 # Local environment files
 venv/

@@ -1,12 +1,16 @@
+# The ultimate executable.
+# This is the source of truth for the Ansible configuration.
+# It will configure the designated hosts
+
 ---
-- name: Initial Baseline for Debian 13
-  hosts: metal
+- name: Physical Hardware Baseline
+  hosts: metal # Runs on 192.168.2.244 once for each alias
   become: true
   tasks:
-    - name: Update and upgrade the system
+    - name: Update system
       ansible.builtin.apt:
         update_cache: true
-        upgrade: dist
+
 
     - name: Install essential packages
       ansible.builtin.apt:

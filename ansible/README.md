@@ -23,3 +23,12 @@ From there, you will run the following commands :
 pip install --upgrade pip
 pip install ansible ansible-lint
 ```
+
+## Adapting to your cluster
+Obviously, there are never two identical setups. 
+That is why I have attempted to make this as modular as possible. 
+
+
+To begin, you must understand Ansible well enough. 
+
+# Running Ansible

@@ -1,0 +1,19 @@
+# This is an exemple file only. Its only purpose is to show an exemple.
+
+# This is the central storage group, if you do use centralized storage.
+# This group will be used for persistent storage of kubernetes' pods.
+storage:
+  hosts:
+    1.2.3.4:
+
+
+# This is the compute group. 
+# This group is what most of Kubernetes (K3s) will run on.
+compute:
+  hosts:
+    1.2.3.4:
+
+metal:
+  children:
+    compute:
+    storage:
