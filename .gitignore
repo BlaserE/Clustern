@@ -23,4 +23,7 @@ Thumbs.db
 *.acr
 *.alg
 
-.ansible/.lock
+
+# Ansible
+.ansible
+ansible/.venv
