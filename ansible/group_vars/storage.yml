@@ -1,0 +1,2 @@
+zfs_pool_name: "tank"
+zfs_mount_base: "/mnt/tank"

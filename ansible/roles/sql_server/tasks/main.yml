@@ -10,12 +10,14 @@
       - postgresql
       - python3-psycopg2  # Required for Ansible to talk to Postgres
     state: present
+  tags: ["sql", "packages"]
 
 - name: Ensure PostgreSQL is started and enabled
   ansible.builtin.systemd:
     name: postgresql
     state: started
     enabled: true
+  tags: ["sql"]
 
 - name: Create K3s database user
   community.postgresql.postgresql_user:
@@ -24,6 +26,7 @@
     role_attr_flags: "CREATEDB"
   become: true
   become_user: postgres
+  tags: ["sql"]
 
 - name: Create K3s database
   community.postgresql.postgresql_db:
@@ -31,12 +34,16 @@
     owner: "k3s_user" # Name for the K3s SQL database that K3s will use.
   become: true
   become_user: postgres
+  tags: ["sql"]
+
 
 - name: Allow remote connections in pg_hba.conf
   ansible.builtin.lineinfile:
     path: /etc/postgresql/16/main/pg_hba.conf  # Verify version number on Debian 13
     line: "host k3s_db k3s_user 0.0.0.0/0 md5"
   notify: Restart Postgres
+  tags: ["sql", "network"]
+
 
 # Makes sure the SQL Server can listen for external connections from other nodes in the cluster.
 - name: Allow PostgreSQL to listen on all network interfaces
@@ -46,3 +53,4 @@
     line: "listen_addresses = '*'"
     validate: "/usr/lib/postgresql/16/bin/postgres --check -D /var/lib/postgresql/16/main -c config_file=%s"
   notify: Restart Postgres
+  tags: ["sql", "network"]
