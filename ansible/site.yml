@@ -62,3 +62,10 @@
 
     - role: k3s
       tags: ['kubernetes', 'k3s_prep']
+
+- name: Setup Basic Monitoring
+  hosts: metal
+  become: true
+  roles:
+    - role: monitoring
+      tags: ['monitoring']
