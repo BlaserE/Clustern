@@ -13,7 +13,7 @@
   tags: ["sql", "packages"]
 
 - name: Find PostgreSQL version
-  ansible.builtin.shell: "psql --version | awk '{print $3}' | cut -d. -f1"
+  ansible.builtin.command: "psql --version | awk '{print $3}' | cut -d. -f1"
   register: sql_server_pg_version
   changed_when: false
   tags: ["sql"]
@@ -29,12 +29,18 @@
     path: "/mnt/tank/postgres"
     owner: postgres
     group: postgres
-    mode: '0700'
+    mode: "0700"
     state: directory
   tags: ["sql", "storage"]
 
+- name: Init DB
+  ansible.builtin.command:
+    cmd: "su postgres -c '/usr/lib/postgresql/{{ sql_server_pg_version.stdout }}/bin/initdb -D /mnt/tank/postgres'"
+    creates: "/mnt/tank/postgres/PG_VERSION"
+  tags: ["sql", "storage"]
+
 - name: Initialize PostgreSQL if the tank is empty
-  ansible.builtin.shell:
+  ansible.builtin.command:
     cmd: "su postgres -c '/usr/lib/postgresql/{{ sql_server_pg_version.stdout }}/bin/initdb -D /mnt/tank/postgres'"
     creates: "/mnt/tank/postgres/PG_VERSION"
   tags: ["sql", "storage"]
@@ -47,7 +53,7 @@
       listen_addresses = '*'
     owner: postgres
     group: postgres
-    mode: '0644'
+    mode: "0644"
   notify: Restart PostgreSQL
   tags: ["sql", "network"]
 
@@ -75,10 +81,8 @@
   tags: ["sql"]
 
 - name: Create K3s database
-  ansible.builtin.shell:
-    cmd: "su postgres -c \"psql -c \\\"CREATE DATABASE k3s_db OWNER k3s_user;\\\"\""
-  register: create_db_result
-  failed_when: 
-    - create_db_result.rc != 0 
-    - "'already exists' not in create_db_result.stderr"
-  tags: ["sql"]
+  community.postgresql.postgresql_db:
+    name: k3s
+    state: present
+  become: true
+  become_user: postgres

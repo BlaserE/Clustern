@@ -37,7 +37,7 @@
   become: true
   roles:
     - role: hardening
-      tags: ['security']
+      tags: ["security"]
 
 # Play 2: Storage-specific logic
 - name: Configure ZFS storage nodes
@@ -45,10 +45,10 @@
   become: true
   roles:
     - role: zfs
-      tags: ['zfs', 'storage']
+      tags: ["zfs", "storage"]
 
     - role: zfs_snapshots
-      tags: ['zfs', 'snapshots', 'storage']
+      tags: ["zfs", "snapshots", "storage"]
 
 # Play 3: Infrastructure and Compute logic
 - name: Setup Database and K3s Cluster
@@ -58,14 +58,14 @@
     - secrets/passwords.yml
   roles:
     - role: sql_server
-      tags: ['kubernetes', 'sql_prep', 'sql']
+      tags: ["kubernetes", "sql_prep", "sql"]
 
     - role: k3s
-      tags: ['kubernetes', 'k3s_prep']
+      tags: ["kubernetes", "k3s_prep"]
 
 - name: Setup Basic Monitoring
   hosts: metal
   become: true
   roles:
     - role: monitoring
-      tags: ['monitoring']
+      tags: ["monitoring"]

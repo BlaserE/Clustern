@@ -3,10 +3,10 @@
 ---
 - name: Install Sanoid and dependencies
   ansible.builtin.apt:
-    name: 
+    name:
       - sanoid
       - mbuffer # Helps with faster ZFS send/recv later
-      - lzop    # Compression for snapshots
+      - lzop # Compression for snapshots
     state: present
   tags: ["backup", "zfs"]
 
@@ -16,7 +16,7 @@
     state: directory
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
   tags: ["backup"]
 
 - name: Configure Sanoid backup policy
@@ -43,7 +43,7 @@
           autoprune = yes
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   tags: ["backup"]
 
 - name: Enable and start Sanoid timer
