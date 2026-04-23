@@ -49,7 +49,6 @@
 % ==========================================
 % Personal Commands
 % ==========================================
-% \newcommand{\projectversion}{v0.2.0-GPL}
 \newcommand{\docauthor}{Eloi Blaser}
 \newcommand{\githubrepo}{https://github.com/BlaserE/Clustern}
 
@@ -129,11 +128,13 @@ The instructions and scripts provided in this manual are for educational and exp
 % Layer 3: The Perimeter (Networking)
 \include{sections/50_network_hardening}      % Wireguard Tunnel & Hidden Bridge
 
-% Layer 4: The Services (Docker)
+% Layer 4: The Services 
 \include{sections/60_service_orchestration}  % NPM, AdGuard, Vaultwarden
+
+
 \include{sections/70_gitops_workflow}        % Komodo Hub & GitHub CI/CD
 
-% Layer 5: The Intelligence (SRE)
+% Layer 5: The Intelligence
 \include{sections/80_automation_observability.tex} % n8n, Monitoring & Alerts
 
 % Layer 6: Maintenance
