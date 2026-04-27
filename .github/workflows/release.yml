@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - id: get_version
         run: echo "V_NUM=$(cat VERSION)" >> $GITHUB_OUTPUT
